@@ -51,7 +51,7 @@ export function initTheme() {
   if (mql) {
     // remove previous listener if present
     if (mediaListener) mql.removeEventListener("change", mediaListener);
-    mediaListener = (e: MediaQueryListEvent) => {
+    mediaListener = () => {
       const cur = getStoredTheme() ?? "system";
       if (cur === "system") applyTheme("system");
     };
