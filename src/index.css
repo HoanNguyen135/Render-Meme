@@ -28,6 +28,10 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    /* gradient theme colors (used for page background and accents) */
+    --gradient-from: #8b5cf6; /* indigo-500 */
+    --gradient-to: #ec4899; /* pink-500 */
+    --gradient-angle: 135deg;
     --radius: 0.5rem
   }
   .dark {
@@ -55,6 +59,10 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
+    /* darker gradient tint for dark mode */
+    --gradient-from: #06b6d4; /* cyan-500 */
+    --gradient-to: #7c3aed; /* purple-600 */
+    --gradient-angle: 160deg;
   }
 }
 
@@ -64,9 +72,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* soft layered radial highlights to break up the flat white background */
-    background-image: radial-gradient(circle at 10% 10%, rgba(99,102,241,0.06), transparent 10%),
-                      radial-gradient(circle at 90% 90%, rgba(236,72,153,0.04), transparent 10%);
+    /* main colored gradient + subtle radial highlights */
+    background-image: linear-gradient(var(--gradient-angle), var(--gradient-from), var(--gradient-to)),
+                      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06), transparent 8%),
+                      radial-gradient(circle at 90% 90%, rgba(255,255,255,0.04), transparent 10%);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -74,7 +83,15 @@
 
   /* reusable glass effect for cards */
   .glass-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.5));
-    backdrop-filter: blur(8px) saturate(120%);
+    /* base glass with subtle tint based on gradient colors */
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.5)),
+                      linear-gradient(135deg, rgba(139,92,246,0.08), rgba(236,72,153,0.06));
+    background-blend-mode: overlay, normal;
+    backdrop-filter: blur(10px) saturate(130%);
+  }
+  .dark .glass-card {
+    background-image: linear-gradient(135deg, rgba(10,10,12,0.6), rgba(20,20,30,0.45)),
+                      linear-gradient(135deg, rgba(6,182,212,0.06), rgba(124,58,237,0.06));
+    background-blend-mode: overlay, normal;
   }
 }

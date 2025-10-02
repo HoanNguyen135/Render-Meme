@@ -11,7 +11,9 @@ function applyTheme(theme: Theme) {
   };
 
   if (theme === "system") {
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
     setDark(prefersDark);
   } else {
     setDark(theme === "dark");

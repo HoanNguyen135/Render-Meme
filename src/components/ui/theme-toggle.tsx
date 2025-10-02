@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon, Monitor } from "lucide-react";
-import { initTheme, setTheme, getInitialTheme, type Theme } from "../../lib/theme";
+import {
+  initTheme,
+  setTheme,
+  getInitialTheme,
+  type Theme,
+} from "../../lib/theme";
 
 export function ThemeToggle() {
   const [theme, setLocalTheme] = useState<Theme>(getInitialTheme());
@@ -14,7 +19,8 @@ export function ThemeToggle() {
     setLocalTheme(t);
   };
 
-  const buttonBase = "inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium transition-all focus:outline-none";
+  const buttonBase =
+    "inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium transition-all focus:outline-none";
 
   return (
     <div className="flex items-center space-x-2">

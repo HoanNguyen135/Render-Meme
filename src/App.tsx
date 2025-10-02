@@ -15,7 +15,11 @@ function Dashboard() {
               <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
                 Meme Render
               </h1>
-              <div className="text-sm text-gray-500 dark:text-gray-300">Create crypto images from text</div>
+              <img
+                src="	https://img.icons8.com/?size=1200&id=r0hnAB4GmKi6&format=png"
+                alt="Logo"
+                className="w-6 h-6 object-contain"
+              />
             </div>
 
             {/* User info */}

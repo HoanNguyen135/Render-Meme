@@ -20,7 +20,7 @@ function SuggestionList({
   const getEmojiForLabel = (label: string) => {
     const l = label.toLowerCase();
     if (l.includes("logo")) return "🔷";
-    if (l.includes("nft") || l.includes("art")) return "🖼️";
+    if (l.includes("nft")) return "🖼️";
     if (l.includes("meme")) return "🤣";
     if (l.includes("chart") || l.includes("trading")) return "📈";
     if (l.includes("wallet") || l.includes("ui")) return "📱";
@@ -45,7 +45,9 @@ function SuggestionList({
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
                 <div className="font-semibold text-sm truncate">{s.label}</div>
-                <div className="text-[11px] text-gray-400">{s.label === 'NFT Art' ? 'Art' : ''}</div>
+                <div className="text-[11px] text-gray-400">
+                  {s.label === "NFT Art" ? "Art" : ""}
+                </div>
               </div>
               <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 truncate">
                 {s.description}
@@ -157,12 +159,15 @@ export function ImageGeneration() {
               Create crypto images
             </h2>
             <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-              Generate logos, NFT concepts, memes and charts from a short description. Use the examples to get started quickly.
+              Generate logos, NFT concepts, memes and charts from a short
+              description. Use the examples to get started quickly.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-xs text-gray-500">Signed in as</div>
-            <div className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">{user?.email ?? user?.name ?? 'Account'}</div>
+            {/* <div className="text-xs text-gray-500">Signed in as</div>
+            <div className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              {user?.email ?? user?.name ?? "Account"}
+            </div> */}
           </div>
         </div>
 
@@ -191,14 +196,19 @@ export function ImageGeneration() {
 
             <SuggestionList
               query={suggestionQuery}
-              onUseExample={(p) => setPrompt((prev) => (prev ? prev + "\n" + p : p))}
+              onUseExample={(p) =>
+                setPrompt((prev) => (prev ? prev + "\n" + p : p))
+              }
               disabled={isGenerating}
             />
           </div>
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="prompt" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="prompt"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Image Description
               </label>
               <textarea
@@ -220,19 +230,38 @@ export function ImageGeneration() {
               >
                 {isGenerating ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
                     </svg>
                     Generating...
                   </>
                 ) : (
-                  'Generate Image'
+                  "Generate Image"
                 )}
               </button>
 
               <button
-                onClick={() => { setPrompt(''); setImageUrl(null); setError(null); }}
+                onClick={() => {
+                  setPrompt("");
+                  setImageUrl(null);
+                  setError(null);
+                }}
                 className="px-4 py-3 bg-white dark:bg-gray-800 border rounded-xl"
                 type="button"
               >
@@ -252,21 +281,42 @@ export function ImageGeneration() {
       {imageUrl && (
         <div className="space-y-4">
           <div className="border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-            <img src={imageUrl} alt="Generated image" className="w-full h-auto block" />
+            <img
+              src={imageUrl}
+              alt="Generated image"
+              className="w-full h-auto block"
+            />
           </div>
 
           <div className="flex gap-3">
-            <button onClick={downloadImage} className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md">Download PNG</button>
-            <button onClick={copyImageToClipboard} className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md">Copy to clipboard</button>
-            <button onClick={() => navigator.clipboard?.writeText(prompt)} className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md">Copy prompt</button>
+            <button
+              onClick={downloadImage}
+              className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md"
+            >
+              Download PNG
+            </button>
+            <button
+              onClick={copyImageToClipboard}
+              className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md"
+            >
+              Copy to clipboard
+            </button>
+            <button
+              onClick={() => navigator.clipboard?.writeText(prompt)}
+              className="px-4 py-2 bg-white dark:bg-gray-800 border rounded-md"
+            >
+              Copy prompt
+            </button>
           </div>
         </div>
       )}
 
       {isGenerating && (
         <div className="flex items-center justify-center p-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-          <span className="ml-3 text-gray-600 dark:text-gray-300">Generating your image...</span>
+          {/* <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div> */}
+          {/* <span className="ml-3 text-gray-600 dark:text-gray-300">
+            Generating your image...
+          </span> */}
         </div>
       )}
     </div>

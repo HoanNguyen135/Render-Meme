@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { EchoAccountButtonPopover } from '@/components/echo-popover';
-import { formatCurrency } from '@/lib/currency-utils';
-import { Button } from '@/components/echo-button';
-import { Logo } from '@/components/logo';
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
-import { Skeleton } from '@/components/ui/skeleton';
-import { type EchoContextValue } from '@merit-systems/echo-react-sdk';
-import { Gift, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { EchoAccountButtonPopover } from "@/components/echo-popover";
+import { formatCurrency } from "@/lib/currency-utils";
+import { Button } from "@/components/echo-button";
+import { Logo } from "@/components/logo";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { Skeleton } from "@/components/ui/skeleton";
+import { type EchoContextValue } from "@merit-systems/echo-react-sdk";
+import { Gift, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 export function EchoAccountButton({ echo }: { echo: EchoContextValue }) {
   const { user, balance, freeTierBalance, signIn, isLoading } = echo;
@@ -29,7 +29,7 @@ export function EchoAccountButton({ echo }: { echo: EchoContextValue }) {
         <Logo className="size-5" />
       )}
       <span className="text-xs">
-        {isSigningIn ? 'Connecting...' : 'Connect'}
+        {isSigningIn ? "Connecting..." : "Connect"}
       </span>
     </div>
   ) : (
